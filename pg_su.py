@@ -1,15 +1,15 @@
 import numpy as np
-import theano
 import time
 import sys
-import cPickle
+import pickle as cPickle
+import tensorflow as tf
 
-import environment
+import environment_xh
 import pg_network
-import other_agents
-import job_distribution
+import other_policies_xh
+import job_distribution_xh
 
-np.set_printoptions(threshold='nan')
+#np.set_printoptions(threshold='nan')
 
 
 def add_sample(X, y, idx, X_to_add, y_to_add):
@@ -32,7 +32,9 @@ def iterate_minibatches(inputs, targets, batchsize, shuffle=False):
 
 def launch(pa, pg_resume=None, render=False, repre='image', end='no_new_job'):
 
-    env = environment.Env(pa, render=False, repre=repre, end=end)
+    pa.unseen = False
+    nw_len_epis, nw_size_epis = job_distribution_xh.generate_episodes_work(pa)
+    env = environment_xh.Env(pa, nw_len_epis=nw_len_epis, nw_size_epis=nw_size_epis, render=False, repre='image', end=end)
 
     pg_learner = pg_network.PGLearner(pa)
 
@@ -42,9 +44,9 @@ def launch(pa, pg_resume=None, render=False, repre='image', end='no_new_job'):
         pg_learner.set_net_params(net_params)
 
     if pa.evaluate_policy_name == "SJF":
-        evaluate_policy = other_agents.get_sjf_action
+        evaluate_policy = other_policies_xh.get_sjf_action
     elif pa.evaluate_policy_name == "PACKER":
-        evaluate_policy = other_agents.get_packer_action
+        evaluate_policy = other_policies_xh.get_packer_action
     else:
         print("Panic: no policy known to evaluate.")
         exit(1)
@@ -52,39 +54,40 @@ def launch(pa, pg_resume=None, render=False, repre='image', end='no_new_job'):
     # ----------------------------
     print("Preparing for data...")
     # ----------------------------
+    # generate many episodes for training
 
-    nw_len_seqs, nw_size_seqs = job_distribution.generate_sequence_work(pa, seed=42)
+#    nw_len_seqs, nw_size_seqs = job_distribution_xh.generate_sequence_work(pa, seed=42)
 
     # print 'nw_time_seqs=', nw_len_seqs
     # print 'nw_size_seqs=', nw_size_seqs
 
     mem_alloc = 4
 
-    X = np.zeros([pa.simu_len * pa.num_ex * mem_alloc, 1,
+    X = np.zeros([pa.num_steps_in_epi * pa.num_epis * mem_alloc, 1,
                   pa.network_input_height, pa.network_input_width],
-                 dtype=theano.config.floatX)
-    y = np.zeros(pa.simu_len * pa.num_ex * mem_alloc,
+                 dtype=np.float32)
+    y = np.zeros(pa.num_steps_in_epi * pa.num_epis * mem_alloc,
                  dtype='int32')
 
-    print 'network_input_height=', pa.network_input_height
-    print 'network_input_width=', pa.network_input_width
+    print ('network_input_height=', pa.network_input_height)
+    print ('network_input_width=', pa.network_input_width)
 
     counter = 0
-
-    for train_ex in range(pa.num_ex):
+#=======================Loop to genearate episodes according to evaluate_policy====================
+    for train_epi_idx in range(pa.num_epis):
 
         env.reset()
 
-        for _ in xrange(pa.episode_max_length):
+        for _ in range(pa.episode_max_length):
 
             # ---- get current state ----
             ob = env.observe()
 
             a = evaluate_policy(env.machine, env.job_slot)
 
-            if counter < pa.simu_len * pa.num_ex * mem_alloc:
+            if counter < pa.num_steps_in_epi * pa.num_epis * mem_alloc:
 
-                add_sample(X, y, counter, ob, a)
+                add_sample(X, y, counter, ob, a)  # add X and y samples to the list, X is the obversation (state), y is the action index.
                 counter += 1
 
             ob, rew, done, info = env.step(a, repeat=True)
@@ -93,7 +96,9 @@ def launch(pa, pg_resume=None, render=False, repre='image', end='no_new_job'):
                 break
 
         # roll to next example
-        env.seq_no = (env.seq_no + 1) % env.pa.num_ex
+        env.epi_idx = (env.epi_idx + 1) % env.pa.num_epis
+
+#===================================================================================================
 
     num_train = int(0.8 * counter)
     num_test = int(0.2 * counter)
@@ -101,19 +106,11 @@ def launch(pa, pg_resume=None, render=False, repre='image', end='no_new_job'):
     X_train, X_test = X[:num_train], X[num_train: num_train + num_test]
     y_train, y_test = y[:num_train], y[num_train: num_train + num_test]
 
-    # Normalization, make sure nothing becomes NaN
-
-    # X_mean = np.average(X[:num_train + num_test], axis=0)
-    # X_std = np.std(X[:num_train + num_test], axis=0)
-    #
-    # X_train = (X_train - X_mean) / X_std
-    # X_test = (X_test - X_mean) / X_std
 
     # ----------------------------
     print("Start training...")
     # ----------------------------
-
-    for epoch in xrange(pa.num_epochs):
+    for epoch in range(pa.num_epochs):
 
         # In each epoch, we do a full pass over the training data:
         train_err = 0
@@ -153,7 +150,7 @@ def launch(pa, pg_resume=None, render=False, repre='image', end='no_new_job'):
         sys.stdout.flush()
 
         if epoch % pa.output_freq == 0:
-
+            # this is where the code save the neural network parameters
             net_file = open(pa.output_filename + '_net_file_' + str(epoch) + '.pkl', 'wb')
             cPickle.dump(pg_learner.return_net_params(), net_file, -1)
             net_file.close()
@@ -163,21 +160,13 @@ def launch(pa, pg_resume=None, render=False, repre='image', end='no_new_job'):
 
 def main():
 
-    import parameters
+    import parameters_xh
 
-    pa = parameters.Parameters()
+    pa = parameters_xh.Parameters()
 
-    pa.simu_len = 1000  # 1000
-    pa.num_ex = 100  # 100
-    pa.num_nw = 10
-    pa.num_seq_per_batch = 20
-    pa.output_freq = 50
+    pa.num_steps_in_epi = 50
+    pa.num_epis = 10
 
-    # pa.max_nw_size = 5
-    # pa.job_len = 5
-    pa.new_job_rate = 0.3
-
-    pa.episode_max_length = 10000  # 2000
 
     pa.compute_dependent_parameters()
 

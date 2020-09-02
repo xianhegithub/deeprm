@@ -5,22 +5,22 @@ class Dist:
 
     def __init__(self, num_res, max_nw_size, job_len):
         self.num_res = num_res
-        self.max_nw_size = max_nw_size
-        self.job_len = job_len
+        self.max_nw_size = max_nw_size    #max_job_size in parameters.py 10
+        self.job_len = job_len      #max_job_len in parameters.py 15
 
         self.job_small_chance = 0.8
 
-        self.job_len_big_lower = job_len * 2 / 3
-        self.job_len_big_upper = job_len
+        self.job_len_big_lower = job_len * 2 / 3        #10
+        self.job_len_big_upper = job_len        #15
 
         self.job_len_small_lower = 1
-        self.job_len_small_upper = job_len / 5
+        self.job_len_small_upper = job_len / 5      #3  == 3t
 
-        self.dominant_res_lower = max_nw_size / 2
-        self.dominant_res_upper = max_nw_size
+        self.dominant_res_lower = max_nw_size / 2       #5
+        self.dominant_res_upper = max_nw_size       #10  == 0.5r, r = 20
 
         self.other_res_lower = 1
-        self.other_res_upper = max_nw_size / 5
+        self.other_res_upper = max_nw_size / 5      #2  ==0.1r
 
     def normal_dist(self):
 
@@ -35,7 +35,7 @@ class Dist:
         return nw_len, nw_size
 
     def bi_model_dist(self):
-
+        # -- generate individual job --
         # -- job length --
         if np.random.rand() < self.job_small_chance:  # small job
             nw_len = np.random.randint(self.job_len_small_lower,

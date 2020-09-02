@@ -7,7 +7,7 @@ matplotlib.use('Agg')
 
 import parameters
 import pg_re
-import pg_su
+import pg_su_xh
 import slow_down_cdf
 
 
@@ -41,8 +41,7 @@ def script_usage():
 def main():
 
     pa = parameters.Parameters()
-
-    type_exp = 'pg_re'  # 'pg_su' 'pg_su_compact' 'v_su', 'pg_v_re', 'pg_re', q_re', 'test'
+    type_exp = 'pg_su'  # 'pg_su' 'pg_su_compact' 'v_su', 'pg_v_re', 'pg_re', q_re', 'test'
 
     pg_resume = None
     v_resume = None
@@ -139,10 +138,17 @@ def main():
             script_usage()
             sys.exit()
 
+# example running parameter
+    pa.simu_len = 50
+    pa.num_ex = 1000
+    pa.output_filename = "data/pg_su"
+    pa.output_freq = 10
+
+
     pa.compute_dependent_parameters()
 
     if type_exp == 'pg_su':
-        pg_su.launch(pa, pg_resume, render, repre='image', end='all_done')
+        pg_su_xh.launch(pa, pg_resume, render, repre='image', end='all_done')
     elif type_exp == 'v_su':
         v_su.launch(pa, v_resume, render)
     elif type_exp == 'pg_re':

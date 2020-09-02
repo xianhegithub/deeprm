@@ -1,12 +1,14 @@
 import numpy as np
 import time
-import theano
-import cPickle
+import pickle
 import matplotlib.pyplot as plt
+import scipy
+from tqdm import tqdm
 
-import environment
+import environment_xh
 import pg_network
-import slow_down_cdf
+import slow_down_cdf_xh
+import job_distribution_xh
 
 
 def discount(x, gamma):
@@ -14,14 +16,10 @@ def discount(x, gamma):
     Given vector x, computes a vector y such that
     y[i] = x[i] + gamma * x[i+1] + gamma^2 x[i+2] + ...
     """
-    out = np.zeros(len(x))
-    out[-1] = x[-1]
-    for i in reversed(xrange(len(x)-1)):
-        out[i] = x[i] + gamma*out[i+1]
     assert x.ndim >= 1
     # More efficient version:
-    # scipy.signal.lfilter([1],[1,-gamma],x[::-1], axis=0)[::-1]
-    return out
+    out = scipy.signal.lfilter([1],[1,-gamma],x[::-1], axis=0)[::-1]
+    return out  # output np.array y[i]
 
 
 def get_entropy(vec):
@@ -45,10 +43,9 @@ def get_traj(agent, env, episode_max_length, render=False):
 
     ob = env.observe()
 
-    for _ in xrange(episode_max_length):
+    for _ in range(episode_max_length):
         act_prob = agent.get_one_act_prob(ob)
-        csprob_n = np.cumsum(act_prob)
-        a = (csprob_n > np.random.rand()).argmax()
+        a = np.random.choice(len(np.asarray(act_prob)), p = np.asarray(act_prob))
 
         obs.append(ob)  # store the ob at current decision making step
         acts.append(a)
@@ -72,16 +69,16 @@ def get_traj(agent, env, episode_max_length, render=False):
 def concatenate_all_ob(trajs, pa):
 
     timesteps_total = 0
-    for i in xrange(len(trajs)):
+    for i in range(len(trajs)):
         timesteps_total += len(trajs[i]['reward'])
 
     all_ob = np.zeros(
         (timesteps_total, 1, pa.network_input_height, pa.network_input_width),
-        dtype=theano.config.floatX)
+        dtype=np.float32)
 
     timesteps = 0
-    for i in xrange(len(trajs)):
-        for j in xrange(len(trajs[i]['reward'])):
+    for i in range(len(trajs)):
+        for j in range(len(trajs[i]['reward'])):
             all_ob[timesteps, 0, :, :] = trajs[i]['ob'][j]
             timesteps += 1
 
@@ -89,18 +86,18 @@ def concatenate_all_ob(trajs, pa):
 
 
 def concatenate_all_ob_across_examples(all_ob, pa):
-    num_ex = len(all_ob)
+    num_epis = len(all_ob)
     total_samp = 0
-    for i in xrange(num_ex):
+    for i in range(num_epis):
         total_samp += all_ob[i].shape[0]
 
     all_ob_contact = np.zeros(
         (total_samp, 1, pa.network_input_height, pa.network_input_width),
-        dtype=theano.config.floatX)
+        dtype=np.float32)
 
     total_samp = 0
 
-    for i in xrange(num_ex):
+    for i in range(num_epis):
         prev_samp = total_samp
         total_samp += all_ob[i].shape[0]
         all_ob_contact[prev_samp : total_samp, :, :, :] = all_ob[i]
@@ -114,9 +111,9 @@ def process_all_info(trajs):
     job_len = []
 
     for traj in trajs:
-        enter_time.append(np.array([traj['info'].record[i].enter_time for i in xrange(len(traj['info'].record))]))
-        finish_time.append(np.array([traj['info'].record[i].finish_time for i in xrange(len(traj['info'].record))]))
-        job_len.append(np.array([traj['info'].record[i].len for i in xrange(len(traj['info'].record))]))
+        enter_time.append(np.array([traj['info'].record[i].enter_time for i in range(len(traj['info'].record))]))
+        finish_time.append(np.array([traj['info'].record[i].finish_time for i in range(len(traj['info'].record))]))
+        job_len.append(np.array([traj['info'].record[i].len for i in range(len(traj['info'].record))]))
 
     enter_time = np.concatenate(enter_time)
     finish_time = np.concatenate(finish_time)
@@ -133,11 +130,11 @@ def plot_lr_curve(output_file_prefix, max_rew_lr_curve, mean_rew_lr_curve, slow_
     fig = plt.figure(figsize=(12, 5))
 
     ax = fig.add_subplot(121)
-    ax.set_color_cycle([cm(1. * i / num_colors) for i in range(num_colors)])
+    col = [cm(1. * i / num_colors) for i in range(num_colors)]
 
     ax.plot(mean_rew_lr_curve, linewidth=2, label='PG mean')
-    for k in ref_discount_rews:
-        ax.plot(np.tile(np.average(ref_discount_rews[k]), len(mean_rew_lr_curve)), linewidth=2, label=k)
+    for plot_idx, k in enumerate(ref_discount_rews):
+        ax.plot(np.tile(np.average(ref_discount_rews[k]), len(mean_rew_lr_curve)), linewidth=2, label=k, color = col[plot_idx])
     ax.plot(max_rew_lr_curve, linewidth=2, label='PG max')
 
     plt.legend(loc=4)
@@ -145,11 +142,11 @@ def plot_lr_curve(output_file_prefix, max_rew_lr_curve, mean_rew_lr_curve, slow_
     plt.ylabel("Discounted Total Reward", fontsize=20)
 
     ax = fig.add_subplot(122)
-    ax.set_color_cycle([cm(1. * i / num_colors) for i in range(num_colors)])
+    col = [cm(1. * i / num_colors) for i in range(num_colors)]
 
     ax.plot(slow_down_lr_curve, linewidth=2, label='PG mean')
-    for k in ref_discount_rews:
-        ax.plot(np.tile(np.average(np.concatenate(ref_slow_down[k])), len(slow_down_lr_curve)), linewidth=2, label=k)
+    for plot_idx, k in enumerate(ref_discount_rews):
+        ax.plot(np.tile(np.average(np.concatenate(ref_slow_down[k])), len(slow_down_lr_curve)), linewidth=2, label=k, color = col[plot_idx])
 
     plt.legend(loc=1)
     plt.xlabel("Iteration", fontsize=20)
@@ -160,28 +157,31 @@ def plot_lr_curve(output_file_prefix, max_rew_lr_curve, mean_rew_lr_curve, slow_
 
 def launch(pa, pg_resume=None, render=False, repre='image', end='no_new_job'):
 
-    env = environment.Env(pa, render=render, repre=repre, end=end)
+    nw_len_epis, nw_size_epis = job_distribution_xh.generate_episodes_work(pa)  # seed = 42
+
+    env = environment_xh.Env(pa, nw_len_epis=nw_len_epis, nw_size_epis=nw_size_epis,
+                              render=False, repre=repre, end=end)
 
     pg_learner = pg_network.PGLearner(pa)
 
     if pg_resume is not None:
         net_handle = open(pg_resume, 'rb')
-        net_params = cPickle.load(net_handle)
+        net_params = pickle.load(net_handle)
         pg_learner.set_net_params(net_params)
 
     # ----------------------------
     print("Preparing for data...")
     # ----------------------------
 
-    ref_discount_rews, ref_slow_down = slow_down_cdf.launch(pa, pg_resume=None, render=False, plot=False, repre=repre, end=end)
+    ref_discount_rews, ref_slow_down = slow_down_cdf_xh.launch(pa, pg_resume=None, render=False, plot=False, repre=repre, end=end)
 
     mean_rew_lr_curve = []
     max_rew_lr_curve = []
     slow_down_lr_curve = []
 
     timer_start = time.time()
-
-    for iteration in xrange(pa.num_epochs):
+    np.random.seed(20)
+    for iteration in tqdm(range(pa.num_epochs)):
 
         all_ob = []
         all_action = []
@@ -192,17 +192,17 @@ def launch(pa, pg_resume=None, render=False, repre='image', end='no_new_job'):
         all_entropy = []
 
         # go through all examples
-        for ex in xrange(pa.num_ex):
+        for _ in tqdm(range(pa.num_epis)):
 
             # Collect trajectories until we get timesteps_per_batch total timesteps
             trajs = []
 
-            for i in xrange(pa.num_seq_per_batch):
+            for _ in range(pa.num_epis_per_batch):
                 traj = get_traj(pg_learner, env, pa.episode_max_length)
                 trajs.append(traj)
 
             # roll to next example
-            env.seq_no = (env.seq_no + 1) % env.pa.num_ex
+            env.epi_idx = (env.epi_idx + 1) % env.pa.num_epis
 
             all_ob.append(concatenate_all_ob(trajs, pa))
 
@@ -228,7 +228,6 @@ def launch(pa, pg_resume=None, render=False, repre='image', end='no_new_job'):
             all_slowdown.append(
                 (finish_time[finished_idx] - enter_time[finished_idx]) / job_len[finished_idx]
             )
-
             # Action prob entropy
             all_entropy.append(np.concatenate([traj["entropy"]]))
 
@@ -247,18 +246,18 @@ def launch(pa, pg_resume=None, render=False, repre='image', end='no_new_job'):
 
         timer_end = time.time()
 
-        print "-----------------"
-        print "Iteration: \t %i" % iteration
-        print "NumTrajs: \t %i" % len(eprews)
-        print "NumTimesteps: \t %i" % np.sum(eplens)
-        print "Loss:     \t %s" % loss
-        print "MaxRew: \t %s" % np.average([np.max(rew) for rew in all_eprews])
-        print "MeanRew: \t %s +- %s" % (eprews.mean(), eprews.std())
-        print "MeanSlowdown: \t %s" % np.mean(all_slowdown)
-        print "MeanLen: \t %s +- %s" % (eplens.mean(), eplens.std())
-        print "MeanEntropy \t %s" % (np.mean(all_entropy))
-        print "Elapsed time\t %s" % (timer_end - timer_start), "seconds"
-        print "-----------------"
+        print ("-----------------")
+        print ("Iteration: \t %i" % iteration)
+        print ("NumTrajs: \t %i" % len(eprews))
+        print ("NumTimesteps: \t %i" % np.sum(eplens))
+        print ("Loss:     \t %s" % loss)
+        print ("MaxRew: \t %s" % np.average([np.max(rew) for rew in all_eprews]))
+        print ("MeanRew: \t %s +- %s" % (eprews.mean(), eprews.std()))
+        print ("MeanSlowdown: \t %s" % np.mean(all_slowdown))
+        print ("MeanLen: \t %s +- %s" % (eplens.mean(), eplens.std()))
+        print ("MeanEntropy \t %s" % (np.mean(all_entropy)))
+        print ("Elapsed time\t %s" % (timer_end - timer_start), "seconds")
+        print ("-----------------")
 
         timer_start = time.time()
 
@@ -268,11 +267,11 @@ def launch(pa, pg_resume=None, render=False, repre='image', end='no_new_job'):
 
         if iteration % pa.output_freq == 0:
             param_file = open(pa.output_filename + '_' + str(iteration) + '.pkl', 'wb')
-            cPickle.dump(pg_learner.get_params(), param_file, -1)
+            pickle.dump(pg_learner.get_params(), param_file, -1)
             param_file.close()
 
-            slow_down_cdf.launch(pa, pa.output_filename + '_' + str(iteration) + '.pkl',
-                                 render=False, plot=True, repre=repre, end=end)
+            #slow_down_cdf.launch(pa, pa.output_filename + '_' + str(iteration) + '.pkl',
+                                 #render=False, plot=True, repre=repre, end=end)
 
             plot_lr_curve(pa.output_filename,
                           max_rew_lr_curve, mean_rew_lr_curve, slow_down_lr_curve,
@@ -281,26 +280,18 @@ def launch(pa, pg_resume=None, render=False, repre='image', end='no_new_job'):
 
 def main():
 
-    import parameters
+    import parameters_xh
 
-    pa = parameters.Parameters()
+    pa = parameters_xh.Parameters()
 
-    pa.simu_len = 200  # 1000
-    pa.num_ex = 10  # 100
-    pa.num_nw = 10
-    pa.num_seq_per_batch = 20
-    pa.output_freq = 50
+    pa.num_steps_in_epi = 50
+    pa.num_epis = 10
 
-    # pa.max_nw_size = 5
-    # pa.job_len = 5
-    pa.new_job_rate = 0.3
-
-    pa.episode_max_length = 2000  # 2000
 
     pa.compute_dependent_parameters()
 
     pg_resume = None
-    # pg_resume = 'data/tmp_0.pkl'
+    #pg_resume = 'data/pg_su_net_file_450.pkl'
 
     render = False
 

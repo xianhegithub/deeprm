@@ -1,11 +1,12 @@
 import numpy as np
-import pickle as cPickle
 import matplotlib.pyplot as plt
+import scipy
 
-import environment
-import parameters
-#import pg_network
-import other_agents
+import job_distribution_xh
+import environment_xh
+import parameters_xh
+import pg_network_xh
+import other_policies_xh
 
 
 def discount(x, gamma):
@@ -13,14 +14,10 @@ def discount(x, gamma):
     Given vector x, computes a vector y such that
     y[i] = x[i] + gamma * x[i+1] + gamma^2 x[i+2] + ...
     """
-    out = np.zeros(len(x))
-    out[-1] = x[-1]
-    for i in reversed(range(len(x)-1)):
-        out[i] = x[i] + gamma*out[i+1]
     assert x.ndim >= 1
     # More efficient version:
-    # scipy.signal.lfilter([1],[1,-gamma],x[::-1], axis=0)[::-1]
-    return out
+    out = scipy.signal.lfilter([1],[1,-gamma],x[::-1], axis=0)[::-1]
+    return out  # output np.array y[i]
 
 
 def categorical_sample(prob_n):
@@ -30,8 +27,7 @@ def categorical_sample(prob_n):
     This function can potentially be replace by np.random.choice()
     """
     prob_n = np.asarray(prob_n)
-    csprob_n = np.cumsum(prob_n)  # cumulative sum of an array
-    return (csprob_n > np.random.rand()).argmax()  # when equal elements exist, argmax() always return index of the first one.
+    return np.random.choice(len(prob_n),p = prob_n)
 
 
 def get_traj(test_type, pa, env, episode_max_length, pg_resume=None, render=False):
@@ -40,32 +36,28 @@ def get_traj(test_type, pa, env, episode_max_length, pg_resume=None, render=Fals
     Return dictionary of results
     """
 
-    if test_type == 'PG':  # load trained parameters
-
-        pg_learner = pg_network.PGLearner(pa)
-
-        net_handle = open(pg_resume, 'rb')
-        net_params = cPickle.load(net_handle)
-        pg_learner.set_net_params(net_params)
 
     env.reset()
     rews = []
+    state =np.zeros(shape=[1,1,20,224])
 
     ob = env.observe()
 
     for _ in range(episode_max_length):
 
         if test_type == 'PG':
-            a = pg_learner.choose_action(ob)
+            state[0, 0, :, :] = ob
+            act_prob =pg_resume.predict(state)
+            a = np.random.choice(len(np.asarray(act_prob)), p=np.asarray(act_prob))
 
         elif test_type == 'Tetris':
-            a = other_agents.get_packer_action(env.machine, env.job_slot)
+            a = other_policies_xh.get_packer_action(env.machine, env.job_slot)
 
         elif test_type == 'SJF':
-            a = other_agents.get_sjf_action(env.machine, env.job_slot)
+            a = other_policies_xh.get_sjf_action(env.machine, env.job_slot)
 
         elif test_type == 'Random':
-            a = other_agents.get_random_action(env.job_slot)
+            a = other_policies_xh.get_random_action(env.job_slot)
 
         ob, rew, done, info = env.step(a, repeat=True)
 
@@ -87,8 +79,10 @@ def launch(pa, pg_resume=None, render=False, plot=False, repre='image', end='no_
     if pg_resume is not None:
         test_types = ['PG'] + test_types
 
-    env = environment.Env(pa, render, repre=repre, end=end)
+    nw_len_epis, nw_size_epis = job_distribution_xh.generate_episodes_work(pa)
+    env = environment_xh.Env(pa, nw_len_epis=nw_len_epis, nw_size_epis=nw_size_epis, render=False, repre=repre, end=end)
 
+    # these are several disctionaries, indexed by the string test_types: ['Tetris','SJF','Random']
     all_discount_rews = {}
     jobs_slow_down = {}
     work_complete = {}
@@ -106,9 +100,9 @@ def launch(pa, pg_resume=None, render=False, plot=False, repre='image', end='no_
         num_job_remain[test_type] = []
         job_remain_delay[test_type] = []
 
-    for seq_idx in range(pa.num_ex):
+    for epi_idx in range(pa.num_epis):  # number of episodes
         print('\n\n')
-        print("=============== " + str(seq_idx) + " ===============")
+        print("=============== " + str(epi_idx) + " ===============")
 
         for test_type in test_types:
 
@@ -153,7 +147,7 @@ def launch(pa, pg_resume=None, render=False, plot=False, repre='image', end='no_
                 np.sum(pa.episode_max_length - enter_time[unfinished_idx])
             )
 
-        env.seq_no = (env.seq_no + 1) % env.pa.num_ex
+        env.epi_idx = (env.epi_idx + 1) % env.pa.num_epis
 
     # -- matplotlib colormap no overlap --
     if plot:
@@ -161,29 +155,31 @@ def launch(pa, pg_resume=None, render=False, plot=False, repre='image', end='no_
         cm = plt.get_cmap('gist_rainbow')
         fig = plt.figure()
         ax = fig.add_subplot(111)
-        ax.set_color_cycle([cm(1. * i / num_colors) for i in range(num_colors)])
+        col = [cm(1. * i / num_colors) for i in range(num_colors)]
+        #ax.set_color_cycle([cm(1. * i / num_colors) for i in range(num_colors)])
 
-        for test_type in test_types:
+        for test_index,test_type in enumerate(test_types):
+            # the following two lines calculate the cumulative distribution function
             slow_down_cdf = np.sort(np.concatenate(jobs_slow_down[test_type]))
             slow_down_yvals = np.arange(len(slow_down_cdf))/float(len(slow_down_cdf))
-            ax.plot(slow_down_cdf, slow_down_yvals, linewidth=2, label=test_type)
+            ax.plot(slow_down_cdf, slow_down_yvals, linewidth=2, label=test_type, color = col[test_index])
 
         plt.legend(loc=4)
         plt.xlabel("job slowdown", fontsize=20)
         plt.ylabel("CDF", fontsize=20)
-        # plt.show()
-        plt.savefig(pg_resume + "_slowdown_fig" + ".pdf")
+        plt.show()
+        #plt.savefig(pg_resume + "_slowdown_fig" + ".pdf")
 
     return all_discount_rews, jobs_slow_down
 
 
 def main():
-    pa = parameters.Parameters()
+    pa = parameters_xh.Parameters()
 
-    pa.simu_len = 200  # 5000  # 1000
-    pa.num_ex = 10  # 100
+    pa.num_steps_in_epi = 200  # 5000  # 1000
+    pa.num_epis = 10  # number of episodes, this is basically number of episode.
     pa.num_nw = 10
-    pa.num_seq_per_batch = 20  # number of sequences to compute baseline
+    pa.num_epis_per_batch = 20  # number of episodes to compute baseline
     # pa.max_nw_size = 5
     # pa.job_len = 5
     pa.new_job_rate = 0.3

@@ -1,0 +1,3329 @@
+{
+    "traceEvents": [
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 0,
+            "args": {
+                "name": "Allocators"
+            }
+        },
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 1,
+            "args": {
+                "name": "/job:localhost/replica:0/task:0/device:CPU:0 Compute"
+            }
+        },
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 2,
+            "args": {
+                "name": "/job:localhost/replica:0/task:0/device:CPU:0 Tensors"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "NoOp",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388144,
+            "dur": 12,
+            "args": {
+                "name": "_SOURCE",
+                "op": "NoOp"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388216,
+            "dur": 8,
+            "args": {
+                "name": "global_step",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388220,
+            "dur": 10,
+            "args": {
+                "name": "pg_graph/pg_graph/dense/bias/Adam",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388228,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/pg_graph/dense_1/bias/Adam",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388229,
+            "dur": 11,
+            "args": {
+                "name": "pg_graph/pg_graph/dense/kernel/Adam_1",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388235,
+            "dur": 6,
+            "args": {
+                "name": "pg_graph/Adam/learning_rate",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388242,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/pg_graph/dense_1/kernel/Adam_1",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388236,
+            "dur": 8,
+            "args": {
+                "name": "pg_graph/pg_graph/dense_1/bias/Adam_1",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388244,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/beta1_power",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 1,
+            "tid": 3,
+            "ts": 1554882536388228,
+            "dur": 19,
+            "args": {
+                "name": "pg_graph/pg_graph/dense/bias/Adam_1",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 1,
+            "tid": 4,
+            "ts": 1554882536388239,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/pg_graph/dense_1/kernel/Adam",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 1,
+            "tid": 5,
+            "ts": 1554882536388229,
+            "dur": 22,
+            "args": {
+                "name": "pg_graph/pg_graph/dense/kernel/Adam",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388249,
+            "dur": 10,
+            "args": {
+                "name": "pg_graph/beta1_power/read",
+                "op": "Identity",
+                "input0": "pg_graph/beta1_power"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/beta1_power",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388247,
+            "id": 0
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/beta1_power",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388249,
+            "id": 0
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388249,
+            "dur": 11,
+            "args": {
+                "name": "pg_graph/beta2_power",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388249,
+            "dur": 13,
+            "args": {
+                "name": "pg_graph/dense_1/kernel",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 1,
+            "tid": 3,
+            "ts": 1554882536388250,
+            "dur": 13,
+            "args": {
+                "name": "pg_graph/dense/kernel",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388263,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/beta2_power/read",
+                "op": "Identity",
+                "input0": "pg_graph/beta2_power"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/beta2_power",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388260,
+            "id": 1
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/beta2_power",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388263,
+            "id": 1
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 4,
+            "ts": 1554882536388248,
+            "dur": 20,
+            "args": {
+                "name": "pg_graph/Adam/beta1",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388266,
+            "dur": 4,
+            "args": {
+                "name": "pg_graph/dense_1/kernel/read",
+                "op": "Identity",
+                "input0": "pg_graph/dense_1/kernel"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/kernel",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388262,
+            "id": 2
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/kernel",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388266,
+            "id": 2
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388270,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/Adam/beta2",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388274,
+            "dur": 2,
+            "args": {
+                "name": "pg_graph/Adam/epsilon",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 1,
+            "tid": 6,
+            "ts": 1554882536388249,
+            "dur": 27,
+            "args": {
+                "name": "pg_graph/dense/bias",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388276,
+            "dur": 2,
+            "args": {
+                "name": "ConstantFolding/pg_graph/gradients/pg_graph/Sum/input_grad/unstack-folded-1",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388279,
+            "dur": 2,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/value_grad/zeros_like",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388282,
+            "dur": 1,
+            "args": {
+                "name": "ConstantFolding/pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/div_grad/BroadcastGradientArgs-folded-1",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "L2Loss",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388272,
+            "dur": 10,
+            "args": {
+                "name": "pg_graph/dense_1/kernel/Regularizer/l2_regularizer/L2Loss",
+                "op": "L2Loss",
+                "input0": "pg_graph/dense_1/kernel/read"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/kernel/read",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388270,
+            "id": 3
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/kernel/read",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388272,
+            "id": 3
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388280,
+            "dur": 4,
+            "args": {
+                "name": "pg_graph/dense/bias/read",
+                "op": "Identity",
+                "input0": "pg_graph/dense/bias"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/bias",
+            "pid": 1,
+            "tid": 6,
+            "ts": 1554882536388276,
+            "id": 4
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/bias",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388280,
+            "id": 4
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388284,
+            "dur": 2,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/xentropy_grad/ExpandDims/dim",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 1,
+            "tid": 7,
+            "ts": 1554882536388250,
+            "dur": 35,
+            "args": {
+                "name": "pg_graph/dense_1/bias",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 1,
+            "tid": 3,
+            "ts": 1554882536388267,
+            "dur": 21,
+            "args": {
+                "name": "pg_graph/dense/kernel/read",
+                "op": "Identity",
+                "input0": "pg_graph/dense/kernel"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388287,
+            "dur": 2,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/xentropy/concat/values_0",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388285,
+            "dur": 4,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/dense_1/kernel/Regularizer/l2_regularizer_grad/tuple/control_dependency_1",
+                "op": "Const",
+                "input0": "^pg_graph/dense_1/kernel/Regularizer/l2_regularizer/L2Loss"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388288,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/dense_1/bias/read",
+                "op": "Identity",
+                "input0": "pg_graph/dense_1/bias"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/bias",
+            "pid": 1,
+            "tid": 7,
+            "ts": 1554882536388285,
+            "id": 5
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/bias",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388288,
+            "id": 5
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388290,
+            "dur": 2,
+            "args": {
+                "name": "pg_graph/ArgMax/dimension",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Mul",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388291,
+            "dur": 10,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/dense_1/kernel/Regularizer/l2_regularizer/L2Loss_grad/mul",
+                "op": "Mul",
+                "input0": "pg_graph/dense_1/kernel/read",
+                "input1": "pg_graph/gradients/pg_graph/dense_1/kernel/Regularizer/l2_regularizer_grad/tuple/control_dependency_1"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388301,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Reshape/shape",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388305,
+            "dur": 2,
+            "args": {
+                "name": "pg_graph/range_1/start",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388307,
+            "dur": 2,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/Const",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388310,
+            "dur": 2,
+            "args": {
+                "name": "pg_graph/dense/kernel/Regularizer/l2_regularizer/scale",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388312,
+            "dur": 2,
+            "args": {
+                "name": "pg_graph/dense_1/kernel/Regularizer/l2_regularizer/scale",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "_Arg",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388319,
+            "dur": 3,
+            "args": {
+                "name": "_arg_pg_graph/states_0_0",
+                "op": "_Arg"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "L2Loss",
+            "pid": 1,
+            "tid": 3,
+            "ts": 1554882536388290,
+            "dur": 33,
+            "args": {
+                "name": "pg_graph/dense/kernel/Regularizer/l2_regularizer/L2Loss",
+                "op": "L2Loss",
+                "input0": "pg_graph/dense/kernel/read"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "_Arg",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388323,
+            "dur": 2,
+            "args": {
+                "name": "_arg_pg_graph/targets_0_1",
+                "op": "_Arg"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Mul",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388327,
+            "dur": 5,
+            "args": {
+                "name": "pg_graph/dense/kernel/Regularizer/l2_regularizer",
+                "op": "Mul",
+                "input0": "pg_graph/dense/kernel/Regularizer/l2_regularizer/scale",
+                "input1": "pg_graph/dense/kernel/Regularizer/l2_regularizer/L2Loss"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/kernel/Regularizer/l2_regularizer/L2Loss",
+            "pid": 1,
+            "tid": 3,
+            "ts": 1554882536388323,
+            "id": 6
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/kernel/Regularizer/l2_regularizer/L2Loss",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388327,
+            "id": 6
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388331,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/dense/kernel/Regularizer/l2_regularizer_grad/tuple/control_dependency_1",
+                "op": "Const",
+                "input0": "^pg_graph/dense/kernel/Regularizer/l2_regularizer/L2Loss"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Shape",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388329,
+            "dur": 6,
+            "args": {
+                "name": "pg_graph/Flatten/flatten/Shape",
+                "op": "Shape",
+                "input0": "_arg_pg_graph/states_0_0"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "_arg_pg_graph/states_0_0",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388322,
+            "id": 7
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "_arg_pg_graph/states_0_0",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388329,
+            "id": 7
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Shape",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388340,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/xentropy/Shape_2",
+                "op": "Shape",
+                "input0": "_arg_pg_graph/targets_0_1"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388338,
+            "dur": 8,
+            "args": {
+                "name": "pg_graph/Flatten/flatten/strided_slice",
+                "op": "StridedSlice",
+                "input0": "pg_graph/Flatten/flatten/Shape",
+                "input1": "pg_graph/softmax_cross_entropy_loss/Const",
+                "input2": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Reshape/shape",
+                "input3": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Reshape/shape"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Flatten/flatten/Shape",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388335,
+            "id": 8
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Flatten/flatten/Shape",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388338,
+            "id": 8
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Reshape/shape",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388304,
+            "id": 9
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Reshape/shape",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388338,
+            "id": 9
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Reshape/shape",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388304,
+            "id": 10
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Reshape/shape",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388338,
+            "id": 10
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Rank",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388345,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/xentropy/Rank_2",
+                "op": "Rank",
+                "input0": "_arg_pg_graph/targets_0_1"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ArgMax",
+            "pid": 1,
+            "tid": 3,
+            "ts": 1554882536388335,
+            "dur": 12,
+            "args": {
+                "name": "pg_graph/ArgMax_1",
+                "op": "ArgMax",
+                "input0": "_arg_pg_graph/targets_0_1",
+                "input1": "pg_graph/ArgMax/dimension"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "_arg_pg_graph/targets_0_1",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388325,
+            "id": 11
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "_arg_pg_graph/targets_0_1",
+            "pid": 1,
+            "tid": 3,
+            "ts": 1554882536388335,
+            "id": 11
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/ArgMax/dimension",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388292,
+            "id": 12
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/ArgMax/dimension",
+            "pid": 1,
+            "tid": 3,
+            "ts": 1554882536388335,
+            "id": 12
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Mul",
+            "pid": 1,
+            "tid": 4,
+            "ts": 1554882536388322,
+            "dur": 21,
+            "args": {
+                "name": "pg_graph/dense_1/kernel/Regularizer/l2_regularizer",
+                "op": "Mul",
+                "input0": "pg_graph/dense_1/kernel/Regularizer/l2_regularizer/scale",
+                "input1": "pg_graph/dense_1/kernel/Regularizer/l2_regularizer/L2Loss"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/kernel/Regularizer/l2_regularizer/scale",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388314,
+            "id": 13
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/kernel/Regularizer/l2_regularizer/scale",
+            "pid": 1,
+            "tid": 4,
+            "ts": 1554882536388322,
+            "id": 13
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/kernel/Regularizer/l2_regularizer/L2Loss",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388282,
+            "id": 14
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/kernel/Regularizer/l2_regularizer/L2Loss",
+            "pid": 1,
+            "tid": 4,
+            "ts": 1554882536388322,
+            "id": 14
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sub",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388350,
+            "dur": 5,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/xentropy/Sub_1",
+                "op": "Sub",
+                "input0": "pg_graph/softmax_cross_entropy_loss/xentropy/Rank_2",
+                "input1": "pg_graph/ArgMax/dimension"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Pack",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388349,
+            "dur": 6,
+            "args": {
+                "name": "pg_graph/Flatten/flatten/Reshape/shape",
+                "op": "Pack",
+                "input0": "pg_graph/Flatten/flatten/strided_slice",
+                "input1": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/xentropy_grad/ExpandDims/dim"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/xentropy_grad/ExpandDims/dim",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388286,
+            "id": 15
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/xentropy_grad/ExpandDims/dim",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388349,
+            "id": 15
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388357,
+            "dur": 2,
+            "args": {
+                "name": "ConstantFolding/pg_graph/softmax_cross_entropy_loss/xentropy/Slice_1/begin_const_axis",
+                "op": "Const",
+                "input0": "^pg_graph/softmax_cross_entropy_loss/xentropy/Sub_1"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Reshape",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388357,
+            "dur": 4,
+            "args": {
+                "name": "pg_graph/Flatten/flatten/Reshape",
+                "op": "Reshape",
+                "input0": "_arg_pg_graph/states_0_0",
+                "input1": "pg_graph/Flatten/flatten/Reshape/shape"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "_arg_pg_graph/states_0_0",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388322,
+            "id": 16
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "_arg_pg_graph/states_0_0",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388357,
+            "id": 16
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ExpandDims",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388360,
+            "dur": 4,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/xentropy/Slice_1/begin",
+                "op": "ExpandDims",
+                "input0": "pg_graph/softmax_cross_entropy_loss/xentropy/Sub_1",
+                "input1": "ConstantFolding/pg_graph/softmax_cross_entropy_loss/xentropy/Slice_1/begin_const_axis"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Slice",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388365,
+            "dur": 5,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/xentropy/Slice_1",
+                "op": "Slice",
+                "input0": "pg_graph/softmax_cross_entropy_loss/xentropy/Shape_2",
+                "input1": "pg_graph/softmax_cross_entropy_loss/xentropy/Slice_1/begin",
+                "input2": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Reshape/shape"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Pack",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388353,
+            "dur": 19,
+            "args": {
+                "name": "pg_graph/Sum/input",
+                "op": "Pack",
+                "input0": "pg_graph/dense/kernel/Regularizer/l2_regularizer",
+                "input1": "pg_graph/dense_1/kernel/Regularizer/l2_regularizer"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/kernel/Regularizer/l2_regularizer",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388332,
+            "id": 17
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/kernel/Regularizer/l2_regularizer",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388353,
+            "id": 17
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/kernel/Regularizer/l2_regularizer",
+            "pid": 1,
+            "tid": 4,
+            "ts": 1554882536388343,
+            "id": 18
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/kernel/Regularizer/l2_regularizer",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388353,
+            "id": 18
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ConcatV2",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388372,
+            "dur": 5,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/xentropy/concat_1",
+                "op": "ConcatV2",
+                "input0": "pg_graph/softmax_cross_entropy_loss/xentropy/concat/values_0",
+                "input1": "pg_graph/softmax_cross_entropy_loss/xentropy/Slice_1",
+                "input2": "pg_graph/range_1/start"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Reshape",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388379,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/xentropy/Reshape_1",
+                "op": "Reshape",
+                "input0": "_arg_pg_graph/targets_0_1",
+                "input1": "pg_graph/softmax_cross_entropy_loss/xentropy/concat_1"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sum",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388376,
+            "dur": 12,
+            "args": {
+                "name": "pg_graph/Sum",
+                "op": "Sum",
+                "input0": "pg_graph/Sum/input",
+                "input1": "pg_graph/softmax_cross_entropy_loss/Const"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Sum/input",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388372,
+            "id": 19
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Sum/input",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388376,
+            "id": 19
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Mul",
+            "pid": 1,
+            "tid": 5,
+            "ts": 1554882536388336,
+            "dur": 62,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/dense/kernel/Regularizer/l2_regularizer/L2Loss_grad/mul",
+                "op": "Mul",
+                "input0": "pg_graph/dense/kernel/read",
+                "input1": "pg_graph/gradients/pg_graph/dense/kernel/Regularizer/l2_regularizer_grad/tuple/control_dependency_1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/kernel/read",
+            "pid": 1,
+            "tid": 3,
+            "ts": 1554882536388288,
+            "id": 20
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/kernel/read",
+            "pid": 1,
+            "tid": 5,
+            "ts": 1554882536388336,
+            "id": 20
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/dense/kernel/Regularizer/l2_regularizer_grad/tuple/control_dependency_1",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388334,
+            "id": 21
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/dense/kernel/Regularizer/l2_regularizer_grad/tuple/control_dependency_1",
+            "pid": 1,
+            "tid": 5,
+            "ts": 1554882536388336,
+            "id": 21
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MatMul",
+            "pid": 1,
+            "tid": 3,
+            "ts": 1554882536388362,
+            "dur": 171,
+            "args": {
+                "name": "pg_graph/dense/MatMul",
+                "op": "MatMul",
+                "input0": "pg_graph/Flatten/flatten/Reshape",
+                "input1": "pg_graph/dense/kernel/read"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Flatten/flatten/Reshape",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388361,
+            "id": 22
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Flatten/flatten/Reshape",
+            "pid": 1,
+            "tid": 3,
+            "ts": 1554882536388362,
+            "id": 22
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "BiasAdd",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388534,
+            "dur": 4,
+            "args": {
+                "name": "pg_graph/dense/BiasAdd",
+                "op": "BiasAdd",
+                "input0": "pg_graph/dense/MatMul",
+                "input1": "pg_graph/dense/bias/read"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/MatMul",
+            "pid": 1,
+            "tid": 3,
+            "ts": 1554882536388533,
+            "id": 23
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/MatMul",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388534,
+            "id": 23
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/bias/read",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388284,
+            "id": 24
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/bias/read",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388534,
+            "id": 24
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Relu",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388540,
+            "dur": 2,
+            "args": {
+                "name": "pg_graph/dense/Relu",
+                "op": "Relu",
+                "input0": "pg_graph/dense/BiasAdd"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MatMul",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388545,
+            "dur": 6,
+            "args": {
+                "name": "pg_graph/dense_1/MatMul",
+                "op": "MatMul",
+                "input0": "pg_graph/dense/Relu",
+                "input1": "pg_graph/dense_1/kernel/read"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/kernel/read",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388270,
+            "id": 25
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/kernel/read",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388545,
+            "id": 25
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "BiasAdd",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388552,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/dense_1/BiasAdd",
+                "op": "BiasAdd",
+                "input0": "pg_graph/dense_1/MatMul",
+                "input1": "pg_graph/dense_1/bias/read"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/bias/read",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388291,
+            "id": 26
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/bias/read",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388552,
+            "id": 26
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ArgMax",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388568,
+            "dur": 7,
+            "args": {
+                "name": "pg_graph/ArgMax",
+                "op": "ArgMax",
+                "input0": "pg_graph/dense_1/BiasAdd",
+                "input1": "pg_graph/ArgMax/dimension"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Equal",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388577,
+            "dur": 6,
+            "args": {
+                "name": "pg_graph/Equal",
+                "op": "Equal",
+                "input0": "pg_graph/ArgMax",
+                "input1": "pg_graph/ArgMax_1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/ArgMax_1",
+            "pid": 1,
+            "tid": 3,
+            "ts": 1554882536388347,
+            "id": 27
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/ArgMax_1",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388577,
+            "id": 27
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "SoftmaxCrossEntropyWithLogits",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388563,
+            "dur": 24,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/xentropy",
+                "op": "SoftmaxCrossEntropyWithLogits",
+                "input0": "pg_graph/dense_1/BiasAdd",
+                "input1": "pg_graph/softmax_cross_entropy_loss/xentropy/Reshape_1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/BiasAdd",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388555,
+            "id": 28
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/BiasAdd",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388563,
+            "id": 28
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/softmax_cross_entropy_loss/xentropy/Reshape_1",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388382,
+            "id": 29
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/softmax_cross_entropy_loss/xentropy/Reshape_1",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388563,
+            "id": 29
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Cast",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388585,
+            "dur": 5,
+            "args": {
+                "name": "pg_graph/Cast",
+                "op": "Cast",
+                "input0": "pg_graph/Equal"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Rank",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388591,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/Rank_1",
+                "op": "Rank",
+                "input0": "pg_graph/Cast"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Shape",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388592,
+            "dur": 4,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/Shape",
+                "op": "Shape",
+                "input0": "pg_graph/softmax_cross_entropy_loss/xentropy"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Range",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388595,
+            "dur": 4,
+            "args": {
+                "name": "pg_graph/range_1",
+                "op": "Range",
+                "input0": "pg_graph/range_1/start",
+                "input1": "pg_graph/Rank_1",
+                "input2": "pg_graph/ArgMax/dimension"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Snapshot",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388598,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/Mul",
+                "op": "Snapshot",
+                "input0": "pg_graph/softmax_cross_entropy_loss/xentropy"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "BroadcastGradientArgs",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388601,
+            "dur": 5,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/BroadcastGradientArgs",
+                "op": "BroadcastGradientArgs",
+                "input0": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/Shape",
+                "input1": "ConstantFolding/pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/div_grad/BroadcastGradientArgs-folded-1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/Shape",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388596,
+            "id": 30
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/Shape",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388601,
+            "id": 30
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Mean",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388600,
+            "dur": 8,
+            "args": {
+                "name": "pg_graph/Mean_1",
+                "op": "Mean",
+                "input0": "pg_graph/Cast",
+                "input1": "pg_graph/range_1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Cast",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388590,
+            "id": 31
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Cast",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388600,
+            "id": 31
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/range_1",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388599,
+            "id": 32
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/range_1",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388600,
+            "id": 32
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Shape",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388605,
+            "dur": 4,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Shape",
+                "op": "Shape",
+                "input0": "pg_graph/softmax_cross_entropy_loss/Mul"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "_Retval",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388610,
+            "dur": 1,
+            "args": {
+                "name": "_retval_pg_graph/Mean_1_0_0",
+                "op": "_Retval",
+                "input0": "pg_graph/Mean_1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Mean_1",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388608,
+            "id": 33
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Mean_1",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388610,
+            "id": 33
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Fill",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388609,
+            "dur": 4,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/num_present/broadcast_weights/ones_like",
+                "op": "Fill",
+                "input0": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/Shape",
+                "input1": "ConstantFolding/pg_graph/gradients/pg_graph/Sum/input_grad/unstack-folded-1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/Shape",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388596,
+            "id": 34
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/Shape",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388609,
+            "id": 34
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "ConstantFolding/pg_graph/gradients/pg_graph/Sum/input_grad/unstack-folded-1",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388278,
+            "id": 35
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "ConstantFolding/pg_graph/gradients/pg_graph/Sum/input_grad/unstack-folded-1",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388609,
+            "id": 35
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Snapshot",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388626,
+            "dur": 2,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/num_present/broadcast_weights",
+                "op": "Snapshot",
+                "input0": "pg_graph/softmax_cross_entropy_loss/num_present/broadcast_weights/ones_like"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/softmax_cross_entropy_loss/num_present/broadcast_weights/ones_like",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388613,
+            "id": 36
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/softmax_cross_entropy_loss/num_present/broadcast_weights/ones_like",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388626,
+            "id": 36
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sum",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388611,
+            "dur": 22,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/Sum",
+                "op": "Sum",
+                "input0": "pg_graph/softmax_cross_entropy_loss/Mul",
+                "input1": "pg_graph/softmax_cross_entropy_loss/Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sum",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388629,
+            "dur": 5,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/num_present",
+                "op": "Sum",
+                "input0": "pg_graph/softmax_cross_entropy_loss/num_present/broadcast_weights",
+                "input1": "pg_graph/softmax_cross_entropy_loss/Const"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/softmax_cross_entropy_loss/Const",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388309,
+            "id": 37
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/softmax_cross_entropy_loss/Const",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388629,
+            "id": 37
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Equal",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388636,
+            "dur": 4,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/Equal",
+                "op": "Equal",
+                "input0": "pg_graph/softmax_cross_entropy_loss/num_present",
+                "input1": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/value_grad/zeros_like"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Select",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388642,
+            "dur": 7,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/Select",
+                "op": "Select",
+                "input0": "pg_graph/softmax_cross_entropy_loss/Equal",
+                "input1": "ConstantFolding/pg_graph/gradients/pg_graph/Sum/input_grad/unstack-folded-1",
+                "input2": "pg_graph/softmax_cross_entropy_loss/num_present"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "ConstantFolding/pg_graph/gradients/pg_graph/Sum/input_grad/unstack-folded-1",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388278,
+            "id": 38
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "ConstantFolding/pg_graph/gradients/pg_graph/Sum/input_grad/unstack-folded-1",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388642,
+            "id": 38
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Greater",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388637,
+            "dur": 12,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/Greater",
+                "op": "Greater",
+                "input0": "pg_graph/softmax_cross_entropy_loss/num_present",
+                "input1": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/value_grad/zeros_like"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/softmax_cross_entropy_loss/num_present",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388634,
+            "id": 39
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/softmax_cross_entropy_loss/num_present",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388637,
+            "id": 39
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/value_grad/zeros_like",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388281,
+            "id": 40
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/value_grad/zeros_like",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388637,
+            "id": 40
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "RealDiv",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388650,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/div",
+                "op": "RealDiv",
+                "input0": "pg_graph/softmax_cross_entropy_loss/Sum",
+                "input1": "pg_graph/softmax_cross_entropy_loss/Select"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/softmax_cross_entropy_loss/Sum",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388633,
+            "id": 41
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/softmax_cross_entropy_loss/Sum",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388650,
+            "id": 41
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Select",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388651,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/value_grad/Select",
+                "op": "Select",
+                "input0": "pg_graph/softmax_cross_entropy_loss/Greater",
+                "input1": "ConstantFolding/pg_graph/gradients/pg_graph/Sum/input_grad/unstack-folded-1",
+                "input2": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/value_grad/zeros_like"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/value_grad/zeros_like",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388281,
+            "id": 42
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/value_grad/zeros_like",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388651,
+            "id": 42
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Select",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388655,
+            "dur": 2,
+            "args": {
+                "name": "pg_graph/softmax_cross_entropy_loss/value",
+                "op": "Select",
+                "input0": "pg_graph/softmax_cross_entropy_loss/Greater",
+                "input1": "pg_graph/softmax_cross_entropy_loss/div",
+                "input2": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/value_grad/zeros_like"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/softmax_cross_entropy_loss/Greater",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388649,
+            "id": 43
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/softmax_cross_entropy_loss/Greater",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388655,
+            "id": 43
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "RealDiv",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388656,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/div_grad/RealDiv",
+                "op": "RealDiv",
+                "input0": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/value_grad/Select",
+                "input1": "pg_graph/softmax_cross_entropy_loss/Select"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/softmax_cross_entropy_loss/Select",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388649,
+            "id": 44
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/softmax_cross_entropy_loss/Select",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388656,
+            "id": 44
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Add",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388659,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/add",
+                "op": "Add",
+                "input0": "pg_graph/softmax_cross_entropy_loss/value",
+                "input1": "pg_graph/Sum"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Sum",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388388,
+            "id": 45
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Sum",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388659,
+            "id": 45
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Reshape",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388661,
+            "dur": 2,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Reshape",
+                "op": "Reshape",
+                "input0": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/div_grad/RealDiv",
+                "input1": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Reshape/shape",
+                "input2": "^pg_graph/softmax_cross_entropy_loss/Sum"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Reshape/shape",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388304,
+            "id": 46
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Reshape/shape",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388661,
+            "id": 46
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "_Retval",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388663,
+            "dur": 1,
+            "args": {
+                "name": "_retval_pg_graph/add_0_1",
+                "op": "_Retval",
+                "input0": "pg_graph/add"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Tile",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388665,
+            "dur": 6,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Tile",
+                "op": "Tile",
+                "input0": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Reshape",
+                "input1": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Shape"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Reshape",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388663,
+            "id": 47
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Reshape",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388665,
+            "id": 47
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Shape",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388609,
+            "id": 48
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Shape",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388665,
+            "id": 48
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Snapshot",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388672,
+            "dur": 2,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/Mul",
+                "op": "Snapshot",
+                "input0": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Sum_grad/Tile"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sum",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388675,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/Sum",
+                "op": "Sum",
+                "input0": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/Mul",
+                "input1": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/BroadcastGradientArgs"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Reshape",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388679,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/Reshape",
+                "op": "Reshape",
+                "input0": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/Sum",
+                "input1": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/Shape"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/Shape",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388596,
+            "id": 49
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/Shape",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388679,
+            "id": 49
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ExpandDims",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388683,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/xentropy_grad/ExpandDims",
+                "op": "ExpandDims",
+                "input0": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/Mul_grad/Reshape",
+                "input1": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/xentropy_grad/ExpandDims/dim"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Mul",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388688,
+            "dur": 5,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/xentropy_grad/mul",
+                "op": "Mul",
+                "input0": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/xentropy_grad/ExpandDims",
+                "input1": "pg_graph/softmax_cross_entropy_loss/xentropy:1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/softmax_cross_entropy_loss/xentropy:1",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388587,
+            "id": 50
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/softmax_cross_entropy_loss/xentropy:1",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388688,
+            "id": 50
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "BiasAddGrad",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388695,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/dense_1/BiasAdd_grad/BiasAddGrad",
+                "op": "BiasAddGrad",
+                "input0": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/xentropy_grad/mul"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MatMul",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388706,
+            "dur": 7,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/dense_1/MatMul_grad/MatMul",
+                "op": "MatMul",
+                "input0": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/xentropy_grad/mul",
+                "input1": "pg_graph/dense_1/kernel/read",
+                "input2": "^pg_graph/gradients/pg_graph/dense_1/BiasAdd_grad/BiasAddGrad"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/kernel/read",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388270,
+            "id": 51
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/kernel/read",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388706,
+            "id": 51
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ApplyAdam",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388707,
+            "dur": 8,
+            "args": {
+                "name": "pg_graph/Adam/update_pg_graph/dense_1/bias/ApplyAdam",
+                "op": "ApplyAdam",
+                "input0": "pg_graph/dense_1/bias",
+                "input1": "pg_graph/pg_graph/dense_1/bias/Adam",
+                "input2": "pg_graph/pg_graph/dense_1/bias/Adam_1",
+                "input3": "pg_graph/beta1_power/read",
+                "input4": "pg_graph/beta2_power/read",
+                "input5": "pg_graph/Adam/learning_rate",
+                "input6": "pg_graph/Adam/beta1",
+                "input7": "pg_graph/Adam/beta2",
+                "input8": "pg_graph/Adam/epsilon",
+                "input9": "pg_graph/gradients/pg_graph/dense_1/BiasAdd_grad/BiasAddGrad"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/bias",
+            "pid": 1,
+            "tid": 7,
+            "ts": 1554882536388285,
+            "id": 52
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/bias",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388707,
+            "id": 52
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/pg_graph/dense_1/bias/Adam",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388231,
+            "id": 53
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/pg_graph/dense_1/bias/Adam",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388707,
+            "id": 53
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/beta1_power/read",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388259,
+            "id": 54
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/beta1_power/read",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388707,
+            "id": 54
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/beta2_power/read",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388266,
+            "id": 55
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/beta2_power/read",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388707,
+            "id": 55
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/learning_rate",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388241,
+            "id": 56
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/learning_rate",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388707,
+            "id": 56
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/beta1",
+            "pid": 1,
+            "tid": 4,
+            "ts": 1554882536388268,
+            "id": 57
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/beta1",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388707,
+            "id": 57
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/beta2",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388273,
+            "id": 58
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/beta2",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388707,
+            "id": 58
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/epsilon",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388276,
+            "id": 59
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/epsilon",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388707,
+            "id": 59
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/dense_1/BiasAdd_grad/BiasAddGrad",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388698,
+            "id": 60
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/dense_1/BiasAdd_grad/BiasAddGrad",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388707,
+            "id": 60
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MatMul",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388712,
+            "dur": 8,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/dense_1/MatMul_grad/MatMul_1",
+                "op": "MatMul",
+                "input0": "pg_graph/dense/Relu",
+                "input1": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/xentropy_grad/mul",
+                "input2": "^pg_graph/gradients/pg_graph/dense_1/BiasAdd_grad/BiasAddGrad"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/Relu",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388542,
+            "id": 61
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/Relu",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388712,
+            "id": 61
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/xentropy_grad/mul",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388693,
+            "id": 62
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/softmax_cross_entropy_loss/xentropy_grad/mul",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388712,
+            "id": 62
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ReluGrad",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388724,
+            "dur": 4,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/dense/Relu_grad/ReluGrad",
+                "op": "ReluGrad",
+                "input0": "pg_graph/gradients/pg_graph/dense_1/MatMul_grad/MatMul",
+                "input1": "pg_graph/dense/Relu",
+                "input2": "^pg_graph/gradients/pg_graph/dense_1/MatMul_grad/MatMul_1"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "AddN",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388726,
+            "dur": 4,
+            "args": {
+                "name": "pg_graph/gradients/AddN",
+                "op": "AddN",
+                "input0": "pg_graph/gradients/pg_graph/dense_1/kernel/Regularizer/l2_regularizer/L2Loss_grad/mul",
+                "input1": "pg_graph/gradients/pg_graph/dense_1/MatMul_grad/MatMul_1",
+                "input2": "^pg_graph/gradients/pg_graph/dense_1/MatMul_grad/MatMul"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/dense_1/MatMul_grad/MatMul_1",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388720,
+            "id": 63
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/dense_1/MatMul_grad/MatMul_1",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388726,
+            "id": 63
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "BiasAddGrad",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388730,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/dense/BiasAdd_grad/BiasAddGrad",
+                "op": "BiasAddGrad",
+                "input0": "pg_graph/gradients/pg_graph/dense/Relu_grad/ReluGrad"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ApplyAdam",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388732,
+            "dur": 7,
+            "args": {
+                "name": "pg_graph/Adam/update_pg_graph/dense_1/kernel/ApplyAdam",
+                "op": "ApplyAdam",
+                "input0": "pg_graph/dense_1/kernel",
+                "input1": "pg_graph/pg_graph/dense_1/kernel/Adam",
+                "input2": "pg_graph/pg_graph/dense_1/kernel/Adam_1",
+                "input3": "pg_graph/beta1_power/read",
+                "input4": "pg_graph/beta2_power/read",
+                "input5": "pg_graph/Adam/learning_rate",
+                "input6": "pg_graph/Adam/beta1",
+                "input7": "pg_graph/Adam/beta2",
+                "input8": "pg_graph/Adam/epsilon",
+                "input9": "pg_graph/gradients/AddN"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/kernel",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388262,
+            "id": 64
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense_1/kernel",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388732,
+            "id": 64
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/pg_graph/dense_1/kernel/Adam",
+            "pid": 1,
+            "tid": 4,
+            "ts": 1554882536388242,
+            "id": 65
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/pg_graph/dense_1/kernel/Adam",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388732,
+            "id": 65
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/pg_graph/dense_1/kernel/Adam_1",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388245,
+            "id": 66
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/pg_graph/dense_1/kernel/Adam_1",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388732,
+            "id": 66
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/beta1_power/read",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388259,
+            "id": 67
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/beta1_power/read",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388732,
+            "id": 67
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/beta2_power/read",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388266,
+            "id": 68
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/beta2_power/read",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388732,
+            "id": 68
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/learning_rate",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388241,
+            "id": 69
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/learning_rate",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388732,
+            "id": 69
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/beta1",
+            "pid": 1,
+            "tid": 4,
+            "ts": 1554882536388268,
+            "id": 70
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/beta1",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388732,
+            "id": 70
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/beta2",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388273,
+            "id": 71
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/beta2",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388732,
+            "id": 71
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/epsilon",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388276,
+            "id": 72
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/epsilon",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388732,
+            "id": 72
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ApplyAdam",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388735,
+            "dur": 5,
+            "args": {
+                "name": "pg_graph/Adam/update_pg_graph/dense/bias/ApplyAdam",
+                "op": "ApplyAdam",
+                "input0": "pg_graph/dense/bias",
+                "input1": "pg_graph/pg_graph/dense/bias/Adam",
+                "input2": "pg_graph/pg_graph/dense/bias/Adam_1",
+                "input3": "pg_graph/beta1_power/read",
+                "input4": "pg_graph/beta2_power/read",
+                "input5": "pg_graph/Adam/learning_rate",
+                "input6": "pg_graph/Adam/beta1",
+                "input7": "pg_graph/Adam/beta2",
+                "input8": "pg_graph/Adam/epsilon",
+                "input9": "pg_graph/gradients/pg_graph/dense/BiasAdd_grad/BiasAddGrad"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/bias",
+            "pid": 1,
+            "tid": 6,
+            "ts": 1554882536388276,
+            "id": 73
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/bias",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388735,
+            "id": 73
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/pg_graph/dense/bias/Adam",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388230,
+            "id": 74
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/pg_graph/dense/bias/Adam",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388735,
+            "id": 74
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/pg_graph/dense/bias/Adam_1",
+            "pid": 1,
+            "tid": 3,
+            "ts": 1554882536388247,
+            "id": 75
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/pg_graph/dense/bias/Adam_1",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388735,
+            "id": 75
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/beta1",
+            "pid": 1,
+            "tid": 4,
+            "ts": 1554882536388268,
+            "id": 76
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/beta1",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388735,
+            "id": 76
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MatMul",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388737,
+            "dur": 634,
+            "args": {
+                "name": "pg_graph/gradients/pg_graph/dense/MatMul_grad/MatMul_1",
+                "op": "MatMul",
+                "input0": "pg_graph/Flatten/flatten/Reshape",
+                "input1": "pg_graph/gradients/pg_graph/dense/Relu_grad/ReluGrad",
+                "input2": "^pg_graph/gradients/pg_graph/dense/BiasAdd_grad/BiasAddGrad"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Flatten/flatten/Reshape",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388361,
+            "id": 77
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Flatten/flatten/Reshape",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388737,
+            "id": 77
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/dense/Relu_grad/ReluGrad",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536388728,
+            "id": 78
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/dense/Relu_grad/ReluGrad",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388737,
+            "id": 78
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "AddN",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536389379,
+            "dur": 61,
+            "args": {
+                "name": "pg_graph/gradients/AddN_1",
+                "op": "AddN",
+                "input0": "pg_graph/gradients/pg_graph/dense/kernel/Regularizer/l2_regularizer/L2Loss_grad/mul",
+                "input1": "pg_graph/gradients/pg_graph/dense/MatMul_grad/MatMul_1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/dense/kernel/Regularizer/l2_regularizer/L2Loss_grad/mul",
+            "pid": 1,
+            "tid": 5,
+            "ts": 1554882536388398,
+            "id": 79
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/dense/kernel/Regularizer/l2_regularizer/L2Loss_grad/mul",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536389379,
+            "id": 79
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/dense/MatMul_grad/MatMul_1",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536389371,
+            "id": 80
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/gradients/pg_graph/dense/MatMul_grad/MatMul_1",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536389379,
+            "id": 80
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ApplyAdam",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536389442,
+            "dur": 318,
+            "args": {
+                "name": "pg_graph/Adam/update_pg_graph/dense/kernel/ApplyAdam",
+                "op": "ApplyAdam",
+                "input0": "pg_graph/dense/kernel",
+                "input1": "pg_graph/pg_graph/dense/kernel/Adam",
+                "input2": "pg_graph/pg_graph/dense/kernel/Adam_1",
+                "input3": "pg_graph/beta1_power/read",
+                "input4": "pg_graph/beta2_power/read",
+                "input5": "pg_graph/Adam/learning_rate",
+                "input6": "pg_graph/Adam/beta1",
+                "input7": "pg_graph/Adam/beta2",
+                "input8": "pg_graph/Adam/epsilon",
+                "input9": "pg_graph/gradients/AddN_1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/kernel",
+            "pid": 1,
+            "tid": 3,
+            "ts": 1554882536388263,
+            "id": 81
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/dense/kernel",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536389442,
+            "id": 81
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/pg_graph/dense/kernel/Adam",
+            "pid": 1,
+            "tid": 5,
+            "ts": 1554882536388251,
+            "id": 82
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/pg_graph/dense/kernel/Adam",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536389442,
+            "id": 82
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/pg_graph/dense/kernel/Adam_1",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388240,
+            "id": 83
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/pg_graph/dense/kernel/Adam_1",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536389442,
+            "id": 83
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/beta1",
+            "pid": 1,
+            "tid": 4,
+            "ts": 1554882536388268,
+            "id": 84
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/beta1",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536389442,
+            "id": 84
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Mul",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536389771,
+            "dur": 28,
+            "args": {
+                "name": "pg_graph/Adam/mul",
+                "op": "Mul",
+                "input0": "pg_graph/beta1_power/read",
+                "input1": "pg_graph/Adam/beta1",
+                "input2": "^pg_graph/Adam/update_pg_graph/dense/bias/ApplyAdam",
+                "input3": "^pg_graph/Adam/update_pg_graph/dense/kernel/ApplyAdam",
+                "input4": "^pg_graph/Adam/update_pg_graph/dense_1/bias/ApplyAdam",
+                "input5": "^pg_graph/Adam/update_pg_graph/dense_1/kernel/ApplyAdam"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/beta1",
+            "pid": 1,
+            "tid": 4,
+            "ts": 1554882536388268,
+            "id": 85
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/Adam/beta1",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536389771,
+            "id": 85
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Assign",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536389803,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/Adam/Assign",
+                "op": "Assign",
+                "input0": "pg_graph/beta1_power",
+                "input1": "pg_graph/Adam/mul"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/beta1_power",
+            "pid": 1,
+            "tid": 2,
+            "ts": 1554882536388247,
+            "id": 86
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/beta1_power",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536389803,
+            "id": 86
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Mul",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536389808,
+            "dur": 15,
+            "args": {
+                "name": "pg_graph/Adam/mul_1",
+                "op": "Mul",
+                "input0": "pg_graph/beta2_power/read",
+                "input1": "pg_graph/Adam/beta2",
+                "input2": "^pg_graph/Adam/update_pg_graph/dense/bias/ApplyAdam",
+                "input3": "^pg_graph/Adam/update_pg_graph/dense/kernel/ApplyAdam",
+                "input4": "^pg_graph/Adam/update_pg_graph/dense_1/bias/ApplyAdam",
+                "input5": "^pg_graph/Adam/update_pg_graph/dense_1/kernel/ApplyAdam"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Assign",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536389839,
+            "dur": 4,
+            "args": {
+                "name": "pg_graph/Adam/Assign_1",
+                "op": "Assign",
+                "input0": "pg_graph/beta2_power",
+                "input1": "pg_graph/Adam/mul_1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "pg_graph/beta2_power",
+            "pid": 1,
+            "tid": 1,
+            "ts": 1554882536388260,
+            "id": 87
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "pg_graph/beta2_power",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536389839,
+            "id": 87
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536389844,
+            "dur": 3,
+            "args": {
+                "name": "pg_graph/Adam/value",
+                "op": "Const",
+                "input0": "^pg_graph/Adam/Assign_1",
+                "input1": "^pg_graph/Adam/Assign"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "AssignAdd",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1554882536389848,
+            "dur": 5,
+            "args": {
+                "name": "pg_graph/Adam",
+                "op": "AssignAdd",
+                "input0": "global_step",
+                "input1": "pg_graph/Adam/value"
+            }
+        }
+    ]
+}

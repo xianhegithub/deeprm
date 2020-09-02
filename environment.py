@@ -27,20 +27,14 @@ class Env:
 
         if nw_len_seqs is None or nw_size_seqs is None:
             # generate new work
-            self.nw_len_seqs, self.nw_size_seqs = \
-                self.generate_sequence_work(self.pa.simu_len * self.pa.num_ex)
+            self.nw_len_seqs, self.nw_size_seqs = self.generate_sequence_work(self.pa.simu_len * self.pa.num_ex)  #simu_len = 50, num_ex = 1000
 
             self.workload = np.zeros(pa.num_res)
-            for i in xrange(pa.num_res):
-                self.workload[i] = \
-                    np.sum(self.nw_size_seqs[:, i] * self.nw_len_seqs) / \
-                    float(pa.res_slot) / \
-                    float(len(self.nw_len_seqs))
+            for i in range(pa.num_res):
+                self.workload[i] = np.sum(self.nw_size_seqs[:, i] * self.nw_len_seqs) / float(pa.res_slot) / float(len(self.nw_len_seqs))
                 print("Load on # " + str(i) + " resource dimension is " + str(self.workload[i]))
-            self.nw_len_seqs = np.reshape(self.nw_len_seqs,
-                                           [self.pa.num_ex, self.pa.simu_len])
-            self.nw_size_seqs = np.reshape(self.nw_size_seqs,
-                                           [self.pa.num_ex, self.pa.simu_len, self.pa.num_res])
+            self.nw_len_seqs = np.reshape(self.nw_len_seqs, [self.pa.num_ex, self.pa.simu_len])
+            self.nw_size_seqs = np.reshape(self.nw_size_seqs, [self.pa.num_ex, self.pa.simu_len, self.pa.num_res])
         else:
             self.nw_len_seqs = nw_len_seqs
             self.nw_size_seqs = nw_size_seqs
@@ -56,6 +50,7 @@ class Env:
         self.extra_info = ExtraInfo(pa)
 
     def generate_sequence_work(self, simu_len):
+        # -- generate jobs within simu_len cycles --
 
         nw_len_seq = np.zeros(simu_len, dtype=int)
         nw_size_seq = np.zeros((simu_len, self.pa.num_res), dtype=int)
@@ -82,32 +77,28 @@ class Env:
 
             image_repr = np.zeros((self.pa.network_input_height, self.pa.network_input_width))
 
-            ir_pt = 0
+            ir_pt = 0  # somewhat a pointer
 
-            for i in xrange(self.pa.num_res):
+            for i in range(self.pa.num_res):
 
                 image_repr[:, ir_pt: ir_pt + self.pa.res_slot] = self.machine.canvas[i, :, :]
-                ir_pt += self.pa.res_slot
+                ir_pt += self.pa.res_slot  # move away from canvas, next block
 
-                for j in xrange(self.pa.num_nw):
+                for j in range(self.pa.num_nw):
 
                     if self.job_slot.slot[j] is not None:  # fill in a block of work
                         image_repr[: self.job_slot.slot[j].len, ir_pt: ir_pt + self.job_slot.slot[j].res_vec[i]] = 1
-
                     ir_pt += self.pa.max_job_size
 
-            image_repr[: self.job_backlog.curr_size / backlog_width,
-                       ir_pt: ir_pt + backlog_width] = 1
+            image_repr[: int(self.job_backlog.curr_size / backlog_width), ir_pt: ir_pt + backlog_width] = 1
             if self.job_backlog.curr_size % backlog_width > 0:
-                image_repr[self.job_backlog.curr_size / backlog_width,
-                           ir_pt: ir_pt + self.job_backlog.curr_size % backlog_width] = 1
+                image_repr[int(self.job_backlog.curr_size / backlog_width), ir_pt: ir_pt + self.job_backlog.curr_size % backlog_width] = 1
             ir_pt += backlog_width
 
-            image_repr[:, ir_pt: ir_pt + 1] = self.extra_info.time_since_last_new_job / \
-                                              float(self.extra_info.max_tracking_time_since_last_job)
+            image_repr[:, ir_pt: ir_pt + 1] = self.extra_info.time_since_last_new_job / float(self.extra_info.max_tracking_time_since_last_job)
             ir_pt += 1
 
-            assert ir_pt == image_repr.shape[1]
+            assert ir_pt == image_repr.shape[1]   #debugging point
 
             return image_repr
 
@@ -116,8 +107,8 @@ class Env:
             compact_repr = np.zeros(self.pa.time_horizon * (self.pa.num_res + 1) +  # current work
                                     self.pa.num_nw * (self.pa.num_res + 1) +        # new work
                                     1,                                              # backlog indicator
-                                    dtype=theano.config.floatX)
-
+                                    dtype=theano.config.floatX)                     # this is to make the code runable on GPU
+            #(self.res_slot + self.max_job_size * self.num_nw) * self.num_res + self.backlog_width + 1
             cr_pt = 0
 
             # current work reward, after each time step, how many jobs left in the machine
@@ -160,7 +151,7 @@ class Env:
 
         skip_row = 0
 
-        for i in xrange(self.pa.num_res):
+        for i in range(self.pa.num_res):
 
             plt.subplot(self.pa.num_res,
                         1 + self.pa.num_nw + 1,  # first +1 for current work, last +1 for backlog queue
@@ -168,7 +159,7 @@ class Env:
 
             plt.imshow(self.machine.canvas[i, :, :], interpolation='nearest', vmax=1)
 
-            for j in xrange(self.pa.num_nw):
+            for j in range(self.pa.num_nw):
 
                 job_slot = np.zeros((self.pa.time_horizon, self.pa.max_job_size))
                 if self.job_slot.slot[j] is not None:  # fill in a block of work
@@ -213,6 +204,8 @@ class Env:
 
         reward = 0
         for j in self.machine.running_job:
+            #for every time step, the agent receives for each running job a reward -1/job_length
+            #so that when a job finishes, tha agent receives a reward smaller than -1
             reward += self.pa.delay_penalty / float(j.len)
 
         for j in self.job_slot.slot:
@@ -256,10 +249,7 @@ class Env:
                 if self.seq_idx >= self.pa.simu_len:
                     done = True
             elif self.end == "all_done":  # everything has to be finished
-                if self.seq_idx >= self.pa.simu_len and \
-                   len(self.machine.running_job) == 0 and \
-                   all(s is None for s in self.job_slot.slot) and \
-                   all(s is None for s in self.job_backlog.backlog):
+                if self.seq_idx >= self.pa.simu_len and len(self.machine.running_job) == 0 and all(s is None for s in self.job_slot.slot) and all(s is None for s in self.job_backlog.backlog):
                     done = True
                 elif self.curr_time > self.pa.episode_max_length:  # run too long, force termination
                     done = True
@@ -272,7 +262,7 @@ class Env:
                     if new_job.len > 0:  # a new job comes
 
                         to_backlog = True
-                        for i in xrange(self.pa.num_nw):
+                        for i in range(self.pa.num_nw):
                             if self.job_slot.slot[i] is None:  # put in new visible job slots
                                 self.job_slot.slot[i] = new_job
                                 self.job_record.record[new_job.id] = new_job
@@ -293,8 +283,8 @@ class Env:
             reward = self.get_reward()
 
         elif status == 'Allocate':
-            self.job_record.record[self.job_slot.slot[a].id] = self.job_slot.slot[a]
-            self.job_slot.slot[a] = None
+            self.job_record.record[self.job_slot.slot[a].id] = self.job_slot.slot[a]      # what is 'id'
+            self.job_slot.slot[a] = None  # set to None because the job is sent to the machine, running.
 
             # dequeue backlog
             if self.job_backlog.curr_size > 0:
@@ -344,12 +334,12 @@ class Job:
 
 class JobSlot:
     def __init__(self, pa):
-        self.slot = [None] * pa.num_nw
+        self.slot = [None] * pa.num_nw    # 5 maximum allowed number of work in the queue
 
 
 class JobBacklog:
     def __init__(self, pa):
-        self.backlog = [None] * pa.backlog_size
+        self.backlog = [None] * pa.backlog_size    # 60 backlog queue size
         self.curr_size = 0
 
 
@@ -369,7 +359,7 @@ class Machine:
         self.running_job = []
 
         # colormap for graphical representation
-        self.colormap = np.arange(1 / float(pa.job_num_cap), 1, 1 / float(pa.job_num_cap))
+        self.colormap = np.arange(1 / float(pa.job_num_cap), 1, 1 / float(pa.job_num_cap))      # job_num_cap = 40 maximum number of distinct colors in current work graph
         np.random.shuffle(self.colormap)
 
         # graphical representation
@@ -379,7 +369,7 @@ class Machine:
 
         allocated = False
 
-        for t in xrange(0, self.time_horizon - job.len):
+        for t in range(0, self.time_horizon - job.len):
 
             new_avbl_res = self.avbl_slot[t: t + job.len, :] - job.res_vec
 
@@ -397,6 +387,7 @@ class Machine:
 
                 used_color = np.unique(self.canvas[:])
                 # WARNING: there should be enough colors in the color map
+                # find the next color in the colormap for the new job
                 for color in self.colormap:
                     if color not in used_color:
                         new_color = color
@@ -405,12 +396,12 @@ class Machine:
                 assert job.start_time != -1
                 assert job.finish_time != -1
                 assert job.finish_time > job.start_time
-                canvas_start_time = job.start_time - curr_time
-                canvas_end_time = job.finish_time - curr_time
+                canvas_start_time = job.start_time - curr_time   # should be just t
+                canvas_end_time = job.finish_time - curr_time    # should be t + job.len
 
-                for res in xrange(self.num_res):
+                for res in range(self.num_res):
                     for i in range(canvas_start_time, canvas_end_time):
-                        avbl_slot = np.where(self.canvas[res, i, :] == 0)[0]
+                        avbl_slot = np.where(self.canvas[res, i, :] == 0)[0]  # find the location of the available resource slot in the time step t
                         self.canvas[res, i, avbl_slot[: job.res_vec[res]]] = new_color
 
                 break
@@ -418,18 +409,18 @@ class Machine:
         return allocated
 
     def time_proceed(self, curr_time):
-
+        # update the machine state!
         self.avbl_slot[:-1, :] = self.avbl_slot[1:, :]
         self.avbl_slot[-1, :] = self.res_slot
-
+        # check whether jobs are finished at this point
         for job in self.running_job:
 
             if job.finish_time <= curr_time:
-                self.running_job.remove(job)
+                self.running_job.remove(job)  # an attribute of list, .remove or .append elements.
 
         # update graphical representation
 
-        self.canvas[:, :-1, :] = self.canvas[:, 1:, :]
+        self.canvas[:, :-1, :] = self.canvas[:, 1:, :]      #index starts from 0, this line removes the first element of canvas in the second dimension.
         self.canvas[:, -1, :] = 0
 
 
@@ -470,7 +461,7 @@ def test_backlog():
     env.step(5)
     assert env.job_backlog.backlog[0] is not None
     assert env.job_backlog.backlog[1] is None
-    print "New job is backlogged."
+    print ("New job is backlogged.")
 
     env.step(5)
     env.step(5)
@@ -499,7 +490,7 @@ def test_backlog():
     env.step(3)
     assert env.job_slot.slot[3] == job
 
-    print "- Backlog test passed -"
+    print ("- Backlog test passed -")
 
 
 def test_compact_speed():
@@ -516,11 +507,11 @@ def test_compact_speed():
     import time
 
     start_time = time.time()
-    for i in xrange(100000):
+    for i in range(100000):
         a = other_agents.get_sjf_action(env.machine, env.job_slot)
         env.step(a)
     end_time = time.time()
-    print "- Elapsed time: ", end_time - start_time, "sec -"
+    print ("- Elapsed time: ", end_time - start_time, "sec -")
 
 
 def test_image_speed():
@@ -537,11 +528,11 @@ def test_image_speed():
     import time
 
     start_time = time.time()
-    for i in xrange(100000):
+    for i in range(100000):
         a = other_agents.get_sjf_action(env.machine, env.job_slot)
         env.step(a)
     end_time = time.time()
-    print "- Elapsed time: ", end_time - start_time, "sec -"
+    print ("- Elapsed time: ", end_time - start_time, "sec -")
 
 
 if __name__ == '__main__':
